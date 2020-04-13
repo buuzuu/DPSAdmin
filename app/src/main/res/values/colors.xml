@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorPrimary">#ffffff</color>
+    <color name="colorPrimaryDark">#f44336</color>
     <color name="colorAccent">#03DAC5</color>
+
+
+
+
+    <color name="home">#f44336</color>
+    <color name="bill">#9c27b0</color>
+    <color name="salary">#03a9f4</color>
 </resources>
