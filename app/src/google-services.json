@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "562122014332",
+    "firebase_url": "https://dpsadmin-339a7.firebaseio.com",
+    "project_id": "dpsadmin-339a7",
+    "storage_bucket": "dpsadmin-339a7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:562122014332:android:10fd93c8c37633c033d3f9",
+        "android_client_info": {
+          "package_name": "com.example.dpsadmin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "562122014332-9tq1kl3qu1vbu8kqhaiumhkobj3c8ath.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBXZE7hN0CDVmHUmCjj94IgWJXsIu_W_E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "562122014332-9tq1kl3qu1vbu8kqhaiumhkobj3c8ath.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

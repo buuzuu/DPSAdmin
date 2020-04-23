@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="8dp"
+    android:layout_marginTop="6dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginBottom="8dp"
+    app:cardBackgroundColor="@color/bill"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="12dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:layout_weight="4"
+        android:background="@drawable/card_gradient_first"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="6dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <TextView
+                android:id="@+id/studentName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:layout_weight="4"
+                android:fontFamily="@font/advent_pro_medium"
+                android:text="Hritik Gupta"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/rollNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="6"
+                android:fontFamily="@font/advent_pro_medium"
+                android:text="Roll Number"
+                android:textAlignment="textEnd"
+                android:textColor="@color/bill"
+                android:textSize="20sp" />
+
+
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_weight="4"
+            android:fontFamily="@font/advent_pro_medium"
+            android:text="Enrollment Number"
+            android:textColor="@android:color/black"
+
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/enrollNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/spinner_border"
+            android:fontFamily="@font/advent_pro_medium"
+            android:paddingLeft="8dp"
+            android:text="1421"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_weight="4"
+            android:fontFamily="@font/advent_pro_medium"
+            android:text="Class"
+            android:textColor="@android:color/black"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/className"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/spinner_border"
+            android:fontFamily="@font/advent_pro_medium"
+            android:paddingLeft="8dp"
+            android:text="Play Group"
+            android:layout_marginBottom="2dp"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_weight="4"
+            android:fontFamily="@font/advent_pro_medium"
+            android:text="Date Of Birth"
+            android:textColor="@android:color/black"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/dob"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/spinner_border"
+            android:fontFamily="@font/advent_pro_medium"
+            android:paddingLeft="8dp"
+            android:text="Mr ABC Sharma"
+            android:layout_marginBottom="2dp"
+
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_weight="4"
+            android:fontFamily="@font/advent_pro_medium"
+            android:text="Guardian Name"
+            android:textColor="@android:color/black"
+
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/guardian"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/spinner_border"
+            android:fontFamily="@font/advent_pro_medium"
+            android:paddingLeft="8dp"
+            android:text="Mr ABC Sharma"
+            android:layout_marginBottom="2dp"
+
+            android:textColor="@android:color/black"
+
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_weight="4"
+
+            android:fontFamily="@font/advent_pro_medium"
+            android:text="Address"
+            android:textColor="@android:color/black"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/spinner_border"
+            android:fontFamily="@font/advent_pro_medium"
+            android:paddingLeft="8dp"
+            android:text="Satyanganj, Ahraura"
+            android:layout_marginBottom="2dp"
+
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+
+            />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
+
+
