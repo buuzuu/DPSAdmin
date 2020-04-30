@@ -3,13 +3,15 @@
     android:layout_width="200dp"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardElevation="5dp"
+    app:cardElevation="2dp"
+    app:cardCornerRadius="8dp"
     android:layout_centerInParent="true"
     android:innerRadius="0dp"
     android:layout_margin="3dp"    >
     <LinearLayout
         android:layout_width="200dp"
-        android:padding="15dp"
+        android:id="@+id/cardBackground"
+        android:padding="2dp"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
@@ -23,7 +25,7 @@
             android:textStyle="bold"
             android:layout_gravity="center"
             android:textAlignment="center"
-            android:text="Bharat aur Vishav"/>
+            android:text="Table Book Paramount"/>
 
         <TextView
             android:layout_width="wrap_content"

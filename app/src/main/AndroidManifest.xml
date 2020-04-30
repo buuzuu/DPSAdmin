@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".GenerateBill"></activity>
+        <activity android:name=".PrintWebView"></activity>
+        <activity android:name=".GenerateBill" />
         <activity android:name=".BillStudentActivity" />
         <activity android:name=".AttendanceActivity" />
         <activity android:name=".StudentRegistration" />

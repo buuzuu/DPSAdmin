@@ -2,11 +2,10 @@ package com.example.dpsadmin.model
 
 import java.io.Serializable
 
-data class Book(
-    var bookName:String,
-    var bookPrice:Int,
+data class BillFee(
+    var fee: Fee,
     var isChecked:Boolean
 ): Serializable
 {
-    constructor() : this("",0,false)
+    constructor() :  this(Fee(),false)
 }

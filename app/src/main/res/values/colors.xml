@@ -10,4 +10,5 @@
     <color name="home">#f44336</color>
     <color name="bill">#9c27b0</color>
     <color name="salary">#03a9f4</color>
+    <color name="startColor">#F6E2FA</color>
 </resources>

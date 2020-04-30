@@ -10,6 +10,7 @@ class Common {
 
 
     companion object {
+        var monthArray = arrayOf<String>("January","February","March","April","May", "June","July","August","September","October","November","December")
         var a: Int = 0
         var attendanceList: ArrayList<Attendance> = java.util.ArrayList()
         var viewAttendanceList: ArrayList<Attendance> = java.util.ArrayList()

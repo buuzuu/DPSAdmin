@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var fragment: Fragment
     lateinit var myWindow: Window
     private lateinit var toolbar: Toolbar
-    // adb connect 192.168.1.8:5555
+    // adb connect 192.168.1.6:5555
     // scrcpy -b2M -m1000 --max-fps 15
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

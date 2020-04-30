@@ -20,6 +20,7 @@ import kotlinx.android.synthetic.main.activity_bill_student.*
 class BillStudentActivity : AppCompatActivity(), OnBillStudentClickListner {
 
     val db = Firebase.firestore
+   lateinit var path:String
     lateinit var myWindow: Window
     private lateinit var toolbar: Toolbar
     private var adapter: BillAdapter? = null
@@ -37,7 +38,8 @@ class BillStudentActivity : AppCompatActivity(), OnBillStudentClickListner {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowHomeEnabled(true)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
-        val ref = db.collection(intent.getStringExtra("collection"))
+        path = intent.getStringExtra("collection")
+        val ref = db.collection(path)
         var query: Query = ref.orderBy("rollNumber", Query.Direction.ASCENDING)
         var options = FirestoreRecyclerOptions.Builder<Student>()
             .setQuery(query, Student::class.java)
@@ -70,8 +72,8 @@ class BillStudentActivity : AppCompatActivity(), OnBillStudentClickListner {
 
     override fun onStudentForBillClicked(enrollNo: String) {
         var intent = Intent(this,GenerateBill::class.java)
-        intent.putExtra("enrollNumber", enrollNo )
-        intent.putExtra("collection", intent.getStringExtra("collection") )
+        intent.putExtra("collection", path)
+        intent.putExtra("enroll", enrollNo)
         startActivity(intent)
     }
 }
