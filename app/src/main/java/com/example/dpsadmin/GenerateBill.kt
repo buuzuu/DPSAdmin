@@ -67,6 +67,8 @@ class GenerateBill : AppCompatActivity(), OnBookSelectClickListner, OnMonthClick
     private lateinit var verify_password: TextInputLayout
     private lateinit var verify_button: Button
     var dbMonthList = ArrayList<String>()
+    var placeList = ArrayList<Place>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -163,7 +165,14 @@ class GenerateBill : AppCompatActivity(), OnBookSelectClickListner, OnMonthClick
                     place_rv.visibility = View.GONE
                 }
                 View.GONE -> {
-                    place_rv.visibility = View.VISIBLE
+                    if(dbMonthList.isNotEmpty()){
+                        place_rv.visibility = View.VISIBLE
+
+                    }else{
+                        Toast.makeText(this,"Select month first",Toast.LENGTH_SHORT).show()
+                    }
+
+
                 }
             }
         }
@@ -171,7 +180,6 @@ class GenerateBill : AppCompatActivity(), OnBookSelectClickListner, OnMonthClick
         db.collection("fees").document("transport").get()
             .addOnSuccessListener {
                 var map = it.get("places") as HashMap<*, *>
-                var placeList = ArrayList<Place>()
                 for ((key, value) in map) {
                     placeList.add(Place(key.toString(), value.toString().toInt(), false))
                 }
@@ -181,8 +189,18 @@ class GenerateBill : AppCompatActivity(), OnBookSelectClickListner, OnMonthClick
 
         printBill.setOnClickListener {
 
-            if (total != 0) {
-                verifyPopup()
+            if (total != 0 && dbMonthList.isNotEmpty() ) {
+
+
+                if(student.transportStudent && placePrice == 0){
+                    Toast.makeText(this,"Select Place", Toast.LENGTH_SHORT).show()
+                }else{
+                    verifyPopup()
+                }
+
+
+            }else{
+                Toast.makeText(this,"Select Month", Toast.LENGTH_SHORT).show()
             }
 
         }
@@ -368,18 +386,21 @@ class GenerateBill : AppCompatActivity(), OnBookSelectClickListner, OnMonthClick
             }
         }
     }
-
-    override fun onPlaceSelected(price: Int) {
-        placePrice = price
-        transportPrice.text = "₹ ${price}"
-        computePayablePrice()
-    }
-
     override fun onBooksSelected(sumPrice: Int) {
         bookPrice = sumPrice
         price.text = "₹ ${sumPrice}"
         computePayablePrice()
     }
+
+
+    override fun onPlaceSelected(price: Int) {
+
+        placePrice = if (dbMonthList.isEmpty()) price else price*dbMonthList.size
+
+        transportPrice.text = "₹ ${placePrice}"
+            computePayablePrice()
+    }
+
 
     override fun onMonthsSelected(
         finalAmount: Int,
@@ -427,7 +448,8 @@ class GenerateBill : AppCompatActivity(), OnBookSelectClickListner, OnMonthClick
                             otherFees.computerFeeJunior
 
 
-                } else if (student.entryClass == "Class Six" || student.entryClass == "Class Seven" || student.entryClass == "Class Eight") {
+                }
+                else if (student.entryClass == "Class Six" || student.entryClass == "Class Seven" || student.entryClass == "Class Eight") {
 
                     computerFee =
                         if (monthList.contains("March") && monthList.contains("June") && monthList.contains(
@@ -450,6 +472,7 @@ class GenerateBill : AppCompatActivity(), OnBookSelectClickListner, OnMonthClick
                     computerFee = 0
 
                 }
+
             } else {
                 computerFee = 0
             }
@@ -460,36 +483,33 @@ class GenerateBill : AppCompatActivity(), OnBookSelectClickListner, OnMonthClick
                 }
             }
             computePayablePrice()
+
         } else {
             billMonthString = ""
+            dbMonthList.clear()
+            transportPrice.text = "₹ ${0}"
+            placePrice =0
+            place_rv.visibility = View.GONE
+            placeList.forEach {
+                if (it.isSelected){
+                    it.isSelected = (!it.isSelected)
+                }
+            }
+            place_rv.adapter?.notifyDataSetChanged()
             computePayablePriceWithoutSome()
+
         }
 
     }
 
 
     fun computePayablePrice() {
+
         total =
             admissionFee + tuitionFee + bookPrice + jtiePrice + stiePrice + diaryPrice + beltPrice + ifeeCardPrice +placePrice+ examFee + computerFee + annualCharge
         title.text = "₹ ${total}"
-        Log.d(
-            "TAG",
-            "admissionFee ${admissionFee}" +
-                    "tuitionFee ${tuitionFee}" +
-                    "bookPrice ${bookPrice}" +
-                    "jtiePrice ${jtiePrice}" +
-                    "stiePrice ${stiePrice}" +
-                    "diaryPrice ${diaryPrice}" +
-                    "beltPrice ${beltPrice}" +
-                    "ifeeCardPrice ${ifeeCardPrice}" +
-                    "placePrice ${placePrice}" +
-                    "examFee ${examFee}" +
-                    "computerFee ${computerFee}" +
-                    "annualCharge ${annualCharge}"
 
-        )
         tuition.text = "₹ ${tuitionFee}"
-     //   transport.text = if(dbMonthList.isNotEmpty()) "₹ ${placePrice * dbMonthList.size}" else "₹ ${placePrice}"
         transport.text = "₹ ${placePrice}"
         examination.text = "₹ ${examFee}"
         computer.text = "₹ ${computerFee}"
@@ -512,18 +532,6 @@ class GenerateBill : AppCompatActivity(), OnBookSelectClickListner, OnMonthClick
             admissionFee + tuitionFee + bookPrice + jtiePrice + stiePrice + diaryPrice + beltPrice + ifeeCardPrice + placePrice
 
         title.text = "₹ ${total}"
-        Log.d(
-            "TAG",
-            "admissionFee ${admissionFee}" +
-                    "tuitionFee ${tuitionFee}" +
-                    "bookPrice ${bookPrice}" +
-                    "jtiePrice ${jtiePrice}" +
-                    "stiePrice ${stiePrice}" +
-                    "diaryPrice ${diaryPrice}" +
-                    "beltPrice ${beltPrice}" +
-                    "ifeeCardPrice ${ifeeCardPrice}" +
-                    "placePrice ${placePrice}"
-        )
         tuition.text = "₹ ${tuitionFee}"
         transport.text = "₹ ${placePrice}"
         examination.text = "₹ 0"
@@ -660,10 +668,11 @@ class GenerateBill : AppCompatActivity(), OnBookSelectClickListner, OnMonthClick
     private fun savePaymentToDb(bill: Bill) {
 
         db.collection("bill_number").document("bill").set(BillNumber(1+billNo))
-
-        for (s in dbMonthList) {
-            db.collection(intentCollection).document(intent.getStringExtra("enroll"))
-                .collection("tuitionFee").document(s).update("paid", true)
+        if(dbMonthList.isNotEmpty()){
+            for (s in dbMonthList) {
+                db.collection(intentCollection).document(intent.getStringExtra("enroll"))
+                    .collection("tuitionFee").document(s).update("paid", true)
+            }
         }
 
         db.collection(intentCollection).document(intent.getStringExtra("enroll")).collection("bills")
