@@ -3,6 +3,10 @@ package com.example.dpsadmin
 import com.example.dpsadmin.bottomsheet.UpdateAttendanceSheet
 import com.example.dpsadmin.bottomsheet.ViewAttendanceSheet
 import com.example.dpsadmin.model.Attendance
+import okhttp3.OkHttpClient
+import okhttp3.Protocol
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -28,6 +32,11 @@ class Common {
         fun getDay(now: Calendar): String {
             return now.get(Calendar.DATE).toString()
         }
+        val generalRetrofit = Retrofit.Builder()
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl("https://pankaj-oil-api.herokuapp.com/")
+            .build()!!
+
 
     }
 }

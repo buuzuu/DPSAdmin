@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.dpsadmin.Common
+import com.example.dpsadmin.NotifyStudent
 import com.example.dpsadmin.R
 import com.example.dpsadmin.StudentRegistration
 import com.example.dpsadmin.bottomsheet.UpdateAttendanceSheet
@@ -29,11 +30,15 @@ class HomeFragment : Fragment() {
             startActivity(Intent(activity, StudentRegistration::class.java))
         }
         root.updateAttendance.setOnClickListener {
-            Common.updateAttendanceSheet.show(activity!!.supportFragmentManager, "UpdateBottomSheet")
+            Common.updateAttendanceSheet.show(requireActivity().supportFragmentManager, "UpdateBottomSheet")
         }
         root.viewAttendance.setOnClickListener {
-            Common.viewAttendanceSheet.show(activity!!.supportFragmentManager, "ViewBottomSheet")
+            Common.viewAttendanceSheet.show(requireActivity().supportFragmentManager, "ViewBottomSheet")
 
+        }
+
+        root.notify.setOnClickListener {
+            startActivity(Intent(root.context, NotifyStudent::class.java))
         }
         return root
     }

@@ -132,7 +132,7 @@ class HtmlString {
                     "            <td class=\"border-right p-bottom\" colspan=\"2\">\n" +
                     "              7. Medicine Charges\n" +
                     "            </td>\n" +
-                    "            <td class=\"right\">&emsp;&emsp;&emsp;</td>\n" +
+                    "            <td class=\"right\">0&emsp;&emsp;&emsp;</td>\n" +
                     "          </tr>\n" +
                     "          <tr>\n" +
                     "            <td class=\"border-right p-bottom\" colspan=\"2\">\n" +
@@ -240,7 +240,7 @@ class HtmlString {
                     "            <td class=\"border-right p-bottom\" colspan=\"2\">\n" +
                     "              7. Medicine Charges\n" +
                     "            </td>\n" +
-                    "            <td class=\"right\">&emsp;&emsp;&emsp;</td>\n" +
+                    "            <td class=\"right\">0&emsp;&emsp;&emsp;</td>\n" +
                     "          </tr>\n" +
                     "          <tr>\n" +
                     "            <td class=\"border-right p-bottom\" colspan=\"2\">\n" +

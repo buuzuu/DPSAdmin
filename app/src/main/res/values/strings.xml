@@ -3,6 +3,9 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="serverKey">
+        AAAAguEVPnw:APA91bH5HELguvIDr2Fwo5jO9rRK1eHlcC4ufbdBYFjAcCbXvg1tQYxpN-VuIWvS0LiO9NadXK_xj9vWpPncvQ7SdH9hr5LN9oBmFy1dRvQoSdJuSaPM5YKv-Pp5r4wWxjge3l80uZOS
+    </string>
 
 
     <string-array name="class_array">

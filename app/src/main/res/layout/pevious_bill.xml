@@ -18,6 +18,7 @@
         android:id="@+id/previours_bill_rv"
         android:layout_width="match_parent"
         android:layout_height="300dp"
+        android:layout_margin="4dp"
         android:background="@drawable/month_background"
         android:padding="8dp" />
 

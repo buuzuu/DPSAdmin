@@ -16,7 +16,6 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions
 class BillAdapter(options: FirestoreRecyclerOptions<Student?>, var listner: OnBillStudentClickListner) :
     FirestoreRecyclerAdapter<Student, BillAdapter.BillHolder>(options) {
 
-
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int

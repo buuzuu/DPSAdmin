@@ -91,7 +91,6 @@ class GenerateBill : AppCompatActivity(), OnBookSelectClickListner, OnMonthClick
         book_rv.layoutManager = GridLayoutManager(this, 3, GridLayoutManager.HORIZONTAL, false)
         month_rv.layoutManager = GridLayoutManager(this, 2, GridLayoutManager.HORIZONTAL, false)
         place_rv.layoutManager = GridLayoutManager(this, 2, GridLayoutManager.HORIZONTAL, false)
-        getBillNumber()
         //Get current user
         db.collection(intentCollection).document(intent.getStringExtra("enroll")).get()
             .addOnSuccessListener {
@@ -167,12 +166,9 @@ class GenerateBill : AppCompatActivity(), OnBookSelectClickListner, OnMonthClick
                 View.GONE -> {
                     if(dbMonthList.isNotEmpty()){
                         place_rv.visibility = View.VISIBLE
-
                     }else{
                         Toast.makeText(this,"Select month first",Toast.LENGTH_SHORT).show()
                     }
-
-
                 }
             }
         }
@@ -190,15 +186,11 @@ class GenerateBill : AppCompatActivity(), OnBookSelectClickListner, OnMonthClick
         printBill.setOnClickListener {
 
             if (total != 0 && dbMonthList.isNotEmpty() ) {
-
-
                 if(student.transportStudent && placePrice == 0){
                     Toast.makeText(this,"Select Place", Toast.LENGTH_SHORT).show()
                 }else{
                     verifyPopup()
                 }
-
-
             }else{
                 Toast.makeText(this,"Select Month", Toast.LENGTH_SHORT).show()
             }
@@ -622,6 +614,7 @@ class GenerateBill : AppCompatActivity(), OnBookSelectClickListner, OnMonthClick
     }
 
     private fun verifyPopup() {
+        getBillNumber()
         val dialogBuilder = AlertDialog.Builder(this)
         val view: View = layoutInflater.inflate(R.layout.verify_layout, null)
         verify_password = view.findViewById(R.id.password_Layout)
@@ -652,7 +645,7 @@ class GenerateBill : AppCompatActivity(), OnBookSelectClickListner, OnMonthClick
                     (jtiePrice + stiePrice + diaryPrice + beltPrice + ifeeCardPrice),
                     bookPrice, 0, total, months
                 )
-                var bill = Bill(billNo+1,currentDate,className,name,admissionFee,annualCharge,tuitionFee,computerFee
+                val bill = Bill(billNo+1,currentDate,className,name,admissionFee,annualCharge,tuitionFee,computerFee
                 ,placePrice,examFee,
                     (jtiePrice + stiePrice + diaryPrice + beltPrice + ifeeCardPrice),
                     bookPrice,0,total,months)
@@ -679,7 +672,6 @@ class GenerateBill : AppCompatActivity(), OnBookSelectClickListner, OnMonthClick
             .document("${1+billNo}").set(bill)
             .addOnSuccessListener {
                 loadMonthAdapter()
-                getBillNumber()
                 val i = Intent(this, PrintWebView::class.java)
                 startActivity(i)
                 alert.dismiss()
